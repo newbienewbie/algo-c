@@ -20,10 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="linked_list.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="linked_list.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="stack.c" />
+    <ClCompile Include="test_linked_list.c" />
+    <ClCompile Include="test_stack.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

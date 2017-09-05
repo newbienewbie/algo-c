@@ -18,12 +18,24 @@
     <ClInclude Include="linked_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="linked_list.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_linked_list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_stack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
