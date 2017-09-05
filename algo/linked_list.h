@@ -6,18 +6,18 @@
 
 
 typedef struct LinkedListElement_ {
-	void * data;
-	struct LinkedListElement_ *next;
+    void * data;
+    struct LinkedListElement_ *next;
 } LinkedListElement;
 
 
 typedef struct LinkedList_ {
-	int size;
-	int(*match)(const void* key1, const void* key2);
-	void(*destroy)(void* data);
+    int size;
+    int(*match)(const void* key1, const void* key2);
+    void(*destroy)(void* data);
 
-	LinkedListElement *head;
-	LinkedListElement *tail;
+    LinkedListElement *head;
+    LinkedListElement *tail;
 } LinkedList;
 
 

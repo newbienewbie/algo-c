@@ -3,22 +3,22 @@
 
 
 void linked_list_init(LinkedList* list, void(*destroy)(void* data)) {
-	list->size = 0;
-	list->destroy = destroy;
-	list->head = NULL;
-	list->tail = NULL;
-	return;
+    list->size = 0;
+    list->destroy = destroy;
+    list->head = NULL;
+    list->tail = NULL;
+    return;
 }
 
 
 void linked_list_destroy(LinkedList* list) {
-	void* data;
-	while (linked_list_size(list)>0) {
-		int x = linked_list_remove_next(list, NULL, (void**)&data);
-		if (x == 0 && list->destroy != NULL) {
-			list->destroy(data);
-		}
-	}
+    void* data;
+    while (linked_list_size(list)>0) {
+        int x = linked_list_remove_next(list, NULL, (void**)&data);
+        if (x == 0 && list->destroy != NULL) {
+            list->destroy(data);
+        }
+    }
 }
 
 
@@ -28,28 +28,28 @@ void linked_list_destroy(LinkedList* list) {
 * @return 0 if the inserting is successful , or -1 otherwise
 */
 int linked_list_insert_next(LinkedList* list, LinkedListElement* element, const void* data) {
-	LinkedListElement *new_element = (LinkedListElement*)malloc(sizeof(LinkedListElement));
-	if (new_element == NULL) {
-		return -1;
-	}
+    LinkedListElement *new_element = (LinkedListElement*)malloc(sizeof(LinkedListElement));
+    if (new_element == NULL) {
+        return -1;
+    }
 
-	new_element->data = (void*)data;
-	if (element == NULL) {
-		if (linked_list_size(list) == 0) {
-			list->tail = new_element;
-		}
-		new_element->next = list->head;
-		list->head = new_element;
-	}
-	else {
-		if (element->next == NULL) {
-			list->tail = new_element;
-		}
-		new_element->next = element->next;
-		element->next = new_element;
-	}
-	list->size++;
-	return 0;
+    new_element->data = (void*)data;
+    if (element == NULL) {
+        if (linked_list_size(list) == 0) {
+            list->tail = new_element;
+        }
+        new_element->next = list->head;
+        list->head = new_element;
+    }
+    else {
+        if (element->next == NULL) {
+            list->tail = new_element;
+        }
+        new_element->next = element->next;
+        element->next = new_element;
+    }
+    list->size++;
+    return 0;
 }
 
 
@@ -61,43 +61,43 @@ int linked_list_insert_next(LinkedList* list, LinkedListElement* element, const 
 * @return 0 if the removing is successful , or -1 otherwise
 */
 int linked_list_remove_next(LinkedList* list, LinkedListElement* element, void** data) {
-	if (linked_list_size(list) == 0) {
-		return -1;
-	}
+    if (linked_list_size(list) == 0) {
+        return -1;
+    }
 
-	LinkedListElement *old_element;
-	if (element == NULL) {
+    LinkedListElement *old_element;
+    if (element == NULL) {
 
-		// save the old data pointer to *data for the caller to manage the storage 
-		*data = list->head->data;
+        // save the old data pointer to *data for the caller to manage the storage 
+        *data = list->head->data;
 
-		old_element = list->head;
-		list->head = list->head->next;
+        old_element = list->head;
+        list->head = list->head->next;
 
-		if (linked_list_size(list) == 1) {
-			list->tail = NULL;
-		}
+        if (linked_list_size(list) == 1) {
+            list->tail = NULL;
+        }
 
-	}
-	else {
+    }
+    else {
 
-		if (element->next == NULL) {
-			return -1;
-		}
+        if (element->next == NULL) {
+            return -1;
+        }
 
-		// save the old data *pointer to *data for the caller to manage the storage 
-		*data = element->next->data;
+        // save the old data *pointer to *data for the caller to manage the storage 
+        *data = element->next->data;
 
-		old_element = element->next;
-		element->next = element->next->next;
+        old_element = element->next;
+        element->next = element->next->next;
 
-		if (element->next == NULL) {
-			list->tail = element;
-		}
+        if (element->next == NULL) {
+            list->tail = element;
+        }
 
-	}
+    }
 
-	free(old_element);
-	list->size--;
-	return 0;
+    free(old_element);
+    list->size--;
+    return 0;
 }
